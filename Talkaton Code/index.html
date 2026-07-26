@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="description" content="Welcome to Talkaton! This is an AI website.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Talkaton">
+  <meta property="og:description" content="Smart. Funny. Slightly unhinged.">
+  <meta property="og:image" content="https://talkaton.org/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Talkaton">
+  <meta name="twitter:description" content="Smart. Funny. Slightly unhinged.">
+  <meta name="twitter:image" content="https://talkaton.org/og.png">
+  <title>Talkaton</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://esm.sh" crossorigin>
+  <link rel="preconnect" href="https://cxulgeojkjnskdyoktkj.supabase.co" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="landingMode">
+  <a class="skipLink" href="#messageInput">Skip to message composer</a>
+
+  <div class="app isEmpty" id="app">
+    <aside class="sidebar" id="sidebar" aria-label="Conversation history">
+      <div class="brandRow">
+        <a class="brand" href="/" aria-label="Talkaton home">
+          <span class="brandMark" aria-hidden="true">T</span>
+          <span>
+            <strong>Talkaton</strong>
+            <small>Smart. Funny. Slightly unhinged.</small>
+          </span>
+        </a>
+        <button class="iconBtn sidebarCloseBtn" id="sidebarCloseBtn" type="button" aria-label="Close sidebar">×</button>
+      </div>
+
+      <button class="newChatBtn ripple" id="newChatBtn" type="button">
+        <span aria-hidden="true">＋</span>
+        <span>New chat</span>
+        <kbd>⌘ K</kbd>
+      </button>
+
+      <label class="chatSearch">
+        <span class="srOnly">Search chats</span>
+        <span aria-hidden="true">⌕</span>
+        <input id="chatSearchInput" type="search" placeholder="Search chats" autocomplete="off">
+        <kbd>⌘ /</kbd>
+      </label>
+
+      <div class="chatList" id="chatList" role="list"></div>
+      <div class="chatListSentinel" id="chatListSentinel" aria-hidden="true"></div>
+
+      <nav class="sidebarBottom" aria-label="Talkaton">
+        <button id="memoryBtn" type="button"><span>Memory</span><span class="navHint" id="memoryCount">0</span></button>
+        <a href="/about"><span>About</span><span class="navHint">↗</span></a>
+        <button id="settingsBtn" type="button"><span>Settings</span><span class="navHint">⌘ ,</span></button>
+        <div class="accountRow">
+          <button class="accountBtn" id="loginBtn" type="button">
+            <span class="avatar" aria-hidden="true">G</span>
+            <span class="accountCopy"><strong>Guest</strong><small>Log in or sign up</small></span>
+          </button>
+          <button class="iconBtn" id="themeBtn" type="button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="sidebarBackdrop" id="sidebarBackdrop" hidden></div>
+
+    <main class="main" id="main">
+      <header class="topBar">
+        <div class="topBarStart">
+          <button class="iconBtn menuBtn" id="menuBtn" type="button" aria-label="Open sidebar">☰</button>
+          <button class="iconBtn sidebarCollapseBtn" id="sidebarCollapseBtn" type="button" aria-label="Collapse sidebar">‹</button>
+          <div class="conversationHeading">
+            <strong id="conversationTitle">New chat</strong>
+            <span id="connectionStatus" class="connectionStatus"><i aria-hidden="true"></i>Online</span>
+          </div>
+        </div>
+
+        <div class="topBarEnd">
+          <div class="visitorCounter" title="Unique visitors">
+            <span class="visitorPulse" aria-hidden="true"></span>
+            <strong id="visitorCount">—</strong>
+            <span>visitors</span>
+          </div>
+          <span class="statPill messageCounter" id="messageCounter" title="Messages remaining today">25/25</span>
+          <button class="iconBtn clearBtn" id="clearChatBtn" type="button" aria-label="Clear conversation" title="Clear conversation">⌫</button>
+        </div>
+      </header>
+
+      <section class="chatViewport" id="chatViewport">
+        <div class="chatArea" id="chatArea" role="log" aria-label="Conversation" aria-live="off"></div>
+        <button class="scrollBottomBtn" id="scrollBottomBtn" type="button" aria-label="Scroll to latest message" hidden>
+          <span aria-hidden="true">↓</span>
+          <span>Latest</span>
+        </button>
+      </section>
+
+      <footer class="composerDock" id="composerDock">
+        <div class="offlineBanner" id="offlineBanner" role="status" hidden>
+          You’re offline. Your draft is safe and will be ready when you reconnect.
+        </div>
+
+        <form class="composer" id="composer">
+          <div class="attachmentTray" id="attachmentTray" aria-label="Attachments" hidden></div>
+
+          <div class="composerInputRow">
+            <textarea
+              id="messageInput"
+              rows="1"
+              maxlength="32000"
+              placeholder="Message Talkaton or attach files"
+              aria-label="Message Talkaton"
+            ></textarea>
+          </div>
+
+          <div class="composerToolbar">
+            <div class="composerTools">
+              <button class="toolBtn ripple" id="toolsBtn" type="button" popovertarget="toolsPopover" aria-label="Open attachment menu" aria-expanded="false" title="Attachments and tools">＋</button>
+              <button class="toolBtn ripple" id="searchBtn" type="button" aria-pressed="false" aria-label="Search the web" title="Search the web">⌕</button>
+              <button class="toolBtn ripple imageGenerateBtn" id="imageGenerateBtn" type="button" aria-label="Generate an image" title="Generate an image">✦</button>
+              <button class="toolBtn ripple" id="imageUploadBtn" type="button" aria-label="Add images" title="Add images">▧</button>
+              <button class="toolBtn ripple" id="attachmentBtn" type="button" aria-label="Attach files" title="Attach files">⌁</button>
+              <button class="toolBtn ripple" id="voiceBtn" type="button" aria-pressed="false" aria-label="Start voice input" title="Voice input">●</button>
+            </div>
+
+            <div class="composerActions">
+              <span class="charCount" id="charCount" aria-live="polite">0</span>
+              <label class="selectWrap">
+                <span class="srOnly">Mode</span>
+                <select id="modeSelect" aria-label="Response mode">
+                  <option>Normal</option>
+                  <option>Chaos</option>
+                  <option>Safe Mode</option>
+                  <option>Coder Mode</option>
+                  <option>Creative</option>
+                </select>
+              </label>
+              <label class="selectWrap modelSelectWrap">
+                <span class="srOnly">Model</span>
+                <select id="modelSelect" aria-label="AI model">
+                  <option value="openai/gpt-5.4-nano" selected>GPT-5.4 Nano</option>
+                  <option value="deepseek/deepseek-chat">DeepSeek Chat</option>
+                  <option value="openai/gpt-4.1-mini">GPT-4.1 Mini</option>
+                  <option value="anthropic/claude-3-haiku">Claude 3 Haiku</option>
+                  <option value="google/gemini-2.5-flash-lite">Gemini</option>
+                  <option value="meta-llama/llama-3.1-8b-instruct">Llama 3.1 8B</option>
+                  <option value="mistralai/mistral-small-3.1-24b-instruct">Mistral Small</option>
+                </select>
+              </label>
+              <button class="sendBtn ripple" id="sendBtn" type="submit" disabled aria-label="Send message">
+                <span class="sendIcon" aria-hidden="true">↑</span>
+                <span class="stopIcon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="dropOverlay" id="dropOverlay" aria-hidden="true">
+            <strong>Drop files here</strong>
+            <span>Images, documents, spreadsheets, text, and code</span>
+          </div>
+        </form>
+        <p class="composerHint">Enter to send · Shift + Enter for a new line · Talkaton can make mistakes</p>
+      </footer>
+    </main>
+  </div>
+
+  <div id="toolsPopover" class="toolsPopover" popover>
+    <button id="popoverImageUpload" type="button"><span aria-hidden="true">▧</span><span><strong>Upload images</strong><small>Analyze one or more images</small></span></button>
+    <button id="popoverFileUpload" type="button"><span aria-hidden="true">⌁</span><span><strong>Attach files</strong><small>Documents, sheets, text, and code</small></span></button>
+    <button id="popoverFolderUpload" type="button"><span aria-hidden="true">▤</span><span><strong>Attach a folder</strong><small>Analyze a project or document folder</small></span></button>
+    <button id="generateImageBtn" type="button"><span aria-hidden="true">✦</span><span><strong>Create an image</strong><small>Generate with Talkaton</small></span></button>
+    <button id="popoverWebSearch" type="button"><span aria-hidden="true">⌕</span><span><strong>Search the web</strong><small>Find current information</small></span></button>
+  </div>
+
+  <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
+  <input id="fileInput" type="file" accept=".pdf,.doc,.docx,.txt,.md,.markdown,.csv,.xls,.xlsx,.json,.html,.htm,.css,.scss,.sass,.less,.js,.mjs,.cjs,.jsx,.ts,.tsx,.vue,.svelte,.astro,.py,.pyw,.java,.c,.cc,.cpp,.cxx,.h,.hpp,.cs,.go,.rs,.rb,.php,.swift,.kt,.kts,.dart,.lua,.r,.scala,.sh,.bash,.zsh,.fish,.ps1,.bat,.cmd,.sql,.graphql,.gql,.xml,.svg,.yaml,.yml,.toml,.ini,.cfg,.conf,.env,.log,.ipynb,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/json,text/plain,text/markdown,text/csv,text/html,text/css,text/javascript,application/javascript,application/xml" multiple hidden>
+  <input id="folderInput" type="file" webkitdirectory directory multiple hidden>
+
+  <dialog class="dialog" id="settingsDialog" aria-labelledby="settingsTitle">
+    <form method="dialog" class="dialogPanel">
+      <header><div><p class="eyebrow">Preferences</p><h2 id="settingsTitle">Settings</h2></div><button class="iconBtn" value="close" aria-label="Close settings">×</button></header>
+      <div class="settingsBody">
+        <label class="settingRow"><span><strong>Theme</strong><small>Choose how Talkaton looks</small></span><select id="themeSelect"><option value="system">System</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        <label class="settingRow"><span><strong>Show timestamps</strong><small>Display when each message was sent</small></span><input id="timestampsToggle" type="checkbox" role="switch"></label>
+        <label class="settingRow"><span><strong>Auto-scroll</strong><small>Follow responses while they stream</small></span><input id="autoScrollToggle" type="checkbox" role="switch" checked></label>
+        <label class="settingRow"><span><strong>Memory</strong><small>Use saved context in future chats</small></span><input id="memoryToggle" type="checkbox" role="switch" checked></label>
+        <label class="settingRow"><span><strong>Markdown</strong><small>Render formatting, code, tables, and math</small></span><input id="markdownToggle" type="checkbox" role="switch" checked></label>
+        <label class="settingRow"><span><strong>Voice output</strong><small>Allow responses to be read aloud</small></span><input id="voiceOutputToggle" type="checkbox" role="switch" checked></label>
+        <label class="settingRow rangeRow"><span><strong>Playback speed</strong><small id="speechRateValue">1×</small></span><input id="speechRateInput" type="range" min="0.75" max="2" step="0.25" value="1"></label>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="memoryDialog" aria-labelledby="memoryTitle">
+    <div class="dialogPanel">
+      <header><div><p class="eyebrow">Personal context</p><h2 id="memoryTitle">Memory</h2></div><button class="iconBtn dialogCloseBtn" data-close-dialog="memoryDialog" aria-label="Close memory">×</button></header>
+      <div class="dialogContent" id="memoryContent"></div>
+    </div>
+  </dialog>
+
+  <dialog class="dialog" id="authDialog" aria-labelledby="authTitle">
+    <form class="dialogPanel compactDialog" id="authForm">
+      <header><div><p class="eyebrow" id="authEyebrow">Welcome back</p><h2 id="authTitle">Log in to Talkaton</h2></div><button class="iconBtn dialogCloseBtn" type="button" data-close-dialog="authDialog" aria-label="Close account dialog">×</button></header>
+      <div class="dialogContent formStack">
+        <div class="authModeTabs" aria-label="Choose account action">
+          <button id="signInTab" type="button" aria-pressed="true">Log in</button>
+          <button id="signUpTab" type="button" aria-pressed="false">Sign up</button>
+        </div>
+        <p class="formIntro" id="authIntro">Welcome back. Enter your account details to continue.</p>
+        <label>Email<input id="authEmail" type="email" autocomplete="email" required></label>
+        <label>Password<input id="authPassword" type="password" autocomplete="current-password" required></label>
+        <label class="authField" id="authConfirmPasswordField" hidden>Confirm password<input id="authConfirmPassword" type="password" autocomplete="new-password" minlength="8" disabled></label>
+        <div class="authHelpRow"><button class="textActionBtn" id="forgotPasswordBtn" type="button">Forgot password?</button></div>
+        <p class="formError" id="authError" role="alert"></p>
+        <button class="primaryBtn ripple" id="authSubmitBtn" type="submit">Log in</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog profileDialog" id="profileDialog" aria-labelledby="profileTitle">
+    <form class="dialogPanel compactDialog" id="profileForm">
+      <header><div><p class="eyebrow">Your account</p><h2 id="profileTitle">Profile</h2></div><button class="iconBtn dialogCloseBtn" type="button" data-close-dialog="profileDialog" aria-label="Close profile">×</button></header>
+      <div class="dialogContent formStack">
+        <div class="profileSection">
+          <p class="eyebrow">Settings</p>
+          <div class="dashboardGrid" id="profileDashboard"></div>
+        </div>
+        <div class="profileAvatarEditor">
+          <span class="profileAvatarPreview" id="profileAvatarPreview" aria-hidden="true">
+            <span id="profileAvatarInitial">T</span>
+            <img id="profileAvatarImage" alt="" hidden>
+          </span>
+          <div class="profileAvatarCopy">
+            <strong>Profile picture</strong>
+            <small>JPG, PNG, or WebP up to 5 MB</small>
+            <div class="profileAvatarActions">
+              <button class="secondaryBtn" id="profileUploadBtn" type="button">Choose photo</button>
+              <button class="textActionBtn dangerTextBtn" id="profileRemoveBtn" type="button">Remove</button>
+            </div>
+          </div>
+          <input id="profileImageInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+        </div>
+        <label>Username<input id="profileUsername" type="text" autocomplete="nickname" minlength="2" maxlength="30" required></label>
+        <label>Email<input id="profileEmail" type="email" autocomplete="email" readonly></label>
+        <p class="formError" id="profileError" role="alert"></p>
+        <div class="profileActions">
+          <button class="secondaryBtn dangerButton" id="profileLogoutBtn" type="button">Log out</button>
+          <button class="primaryBtn ripple" id="profileSaveBtn" type="submit">Save profile</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="passwordResetDialog" aria-labelledby="passwordResetTitle">
+    <form class="dialogPanel compactDialog" id="passwordResetForm">
+      <header><div><p class="eyebrow">Account recovery</p><h2 id="passwordResetTitle">Choose a new password</h2></div><button class="iconBtn dialogCloseBtn" type="button" data-close-dialog="passwordResetDialog" aria-label="Close password reset">×</button></header>
+      <div class="dialogContent formStack">
+        <p class="formIntro">Use at least 8 characters. A longer, unique password is even better.</p>
+        <label>New password<input id="newPassword" type="password" autocomplete="new-password" minlength="8" required></label>
+        <label>Confirm new password<input id="confirmPassword" type="password" autocomplete="new-password" minlength="8" required></label>
+        <p class="formError" id="passwordResetError" role="alert"></p>
+        <button class="primaryBtn ripple" type="submit">Update password</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog" id="promptDialog" aria-labelledby="promptTitle">
+    <form class="dialogPanel compactDialog" id="promptForm" method="dialog">
+      <header><div><p class="eyebrow" id="promptEyebrow">Talkaton</p><h2 id="promptTitle">Create an image</h2></div><button class="iconBtn" type="button" id="promptCancelX" aria-label="Close">×</button></header>
+      <div class="dialogContent formStack">
+        <label id="promptLabel">
+          Show the prompt you want
+          <textarea id="promptInput" rows="5" placeholder="A cinematic robot exploring a quiet library..." autocomplete="off"></textarea>
+        </label>
+        <div class="dialogActions">
+          <button class="secondaryBtn" type="button" id="promptCancelBtn">Cancel</button>
+          <button class="primaryBtn ripple" type="submit" id="promptSubmitBtn">Generate</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toastRegion" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <div class="srOnly" id="announcer" aria-live="polite" aria-atomic="true"></div>
+
+  <script type="module" src="app.js?v=20260724-fal-images"></script>
+</body>
+</html>
