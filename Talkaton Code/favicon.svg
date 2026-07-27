@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="1.5" y="1.5" width="61" height="61" rx="14" fill="#fff" stroke="#000" stroke-width="3" />
-  <path fill="#000" d="M14 13h36a7 7 0 0 1 7 7v20a7 7 0 0 1-7 7H29L16 56l3-9h-5a7 7 0 0 1-7-7V20a7 7 0 0 1 7-7Z" />
-  <circle cx="23" cy="30" r="3" fill="#fff" />
-  <circle cx="32" cy="30" r="3" fill="#fff" />
-  <circle cx="41" cy="30" r="3" fill="#fff" />
-</svg>
+import requests
+import base64
+
+url = "http://googleusercontent.com/image_generation_content/414"
+try:
+    response = requests.get(url, timeout=10)
+    if response.status_code == 200:
+        b64_img = base64.b64encode(response.content).decode('utf-8')
+        svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="100%" height="100%">
+  <image href="data:image/png;base64,{b64_img}" width="1024" height="1024" />
+</svg>"""
+        with open('favicon.svg', 'w') as f:
+            f.write(svg_content)
+        print("Successfully created favicon.svg")
+    else:
+        print(f"Failed to download, status code: {response.status_code}")
+except Exception as e:
+    print(f"Exception: {e}")
