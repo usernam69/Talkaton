@@ -1,7 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rounded container card -->
   <rect x="1.5" y="1.5" width="61" height="61" rx="14" fill="#fff" stroke="#000" stroke-width="3" />
-  <path fill="#000" d="M14 13h36a7 7 0 0 1 7 7v20a7 7 0 0 1-7 7H29L16 56l3-9h-5a7 7 0 0 1-7-7V20a7 7 0 0 1 7-7Z" />
-  <circle cx="23" cy="30" r="3" fill="#fff" />
-  <circle cx="32" cy="30" r="3" fill="#fff" />
-  <circle cx="41" cy="30" r="3" fill="#fff" />
+  
+  <!-- Speech bubble from the human -->
+  <path fill="#000" d="M31 12h20a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5h-7l-4 5v-5h-9a5 5 0 0 1-5-5V17a5 5 0 0 1 5-5Z" />
+  <circle cx="38" cy="23" r="2" fill="#fff" />
+  <circle cx="44" cy="23" r="2" fill="#fff" />
+  <circle cx="50" cy="23" r="2" fill="#fff" />
+
+  <!-- Robot on the left -->
+  <g transform="translate(4, 20)">
+    <!-- Antenna -->
+    <line x1="12" y1="5" x2="12" y2="10" stroke="#000" stroke-width="2" stroke-linecap="round" />
+    <circle cx="12" cy="4" r="2" fill="#000" />
+    <!-- Robot Head -->
+    <rect x="4" y="10" width="16" height="13" rx="4" fill="#fff" stroke="#000" stroke-width="2" />
+    <!-- Robot Eyes/Screen -->
+    <rect x="7" y="13" width="10" height="7" rx="2" fill="#000" />
+    <circle cx="10" cy="16" r="1" fill="#fff" />
+    <circle cx="14" cy="16" r="1" fill="#fff" />
+    <!-- Robot Body -->
+    <path fill="#fff" stroke="#000" stroke-width="2" d="M6 23h12a3 3 0 0 1 3 3v9H3v-9a3 3 0 0 1 3-3Z" />
+    <circle cx="12" cy="29" r="2" fill="#000" />
+  </g>
+
+  <!-- Human on the right -->
+  <g transform="translate(36, 26)">
+    <!-- Head -->
+    <circle cx="14" cy="6" r="5" fill="#fff" stroke="#000" stroke-width="2" />
+    <!-- Speech lines -->
+    <path stroke="#000" stroke-width="2" stroke-linecap="round" d="M4 11l-2 1M3 15l-2 1" />
+    <!-- Body -->
+    <path fill="#fff" stroke="#000" stroke-width="2" d="M5 14h18a2 2 0 0 1 2 2v14H3V16a2 2 0 0 1 2-2Z" />
+  </g>
 </svg>
