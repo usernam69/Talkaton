@@ -57,7 +57,8 @@ const REQUEST_TYPES = {
       "Gemini 2.5 Flash Lite",
       "DeepSeek Chat",
       "Llama 3.1 8B",
-      "Mistral Small"
+      "Mistral Small
+      "Mythos 5.1"
     ]
   },
   new_model: {
