@@ -1,7 +1,7 @@
 const SUPABASE_URL = "https://cxulgeojkjnskdyoktkj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_GgxtfIaIamzZFY_jMU4_Cw_V8NKm475";
 const SUPPORT_EMAIL = "supportaton@gmail.com";
-const OWNER_EMAIL = "kantertal1@gmail.com";
+const OWNER_EMAIL = "sdgoldstein14@gmail.com";
 const FEATURE_LABELS = {
   beta_lab: "Beta Lab access",
   dev_access: "Dev Access · unlimited usage",
