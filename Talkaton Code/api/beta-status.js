@@ -2,6 +2,7 @@ const SUPABASE_URL = "https://cxulgeojkjnskdyoktkj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_GgxtfIaIamzZFY_jMU4_Cw_V8NKm475";
 const ACCOUNT_ROLES = new Map([
   ["kantertal1@gmail.com", "owner"],
+  ["sdgoldstein14@gmail.com", "owner"],
   ["supportaton@gmail.com", "support"]
 ]);
 
