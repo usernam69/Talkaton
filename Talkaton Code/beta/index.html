@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="description" content="Request trusted, time-limited access to the private Talkaton Beta Lab.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Talkaton Beta">
+  <meta property="og:description" content="Private Talkaton Beta access for trusted members, with optional Dev Access.">
+  <meta property="og:image" content="https://talkaton.org/beta/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Talkaton Beta">
+  <meta name="twitter:description" content="Private Talkaton Beta access for trusted members, with optional Dev Access.">
+  <meta name="twitter:image" content="https://talkaton.org/beta/og.png">
+  <title>Talkaton Beta</title>
+  <link rel="icon" href="/favicon-t-20260728.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="/favicon-t-20260728.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css?v=20260728-role-clarity16">
+</head>
+<body>
+  <div class="betaPage">
+    <nav class="betaNav" aria-label="Beta navigation">
+      <a class="betaBrand" href="/" aria-label="Talkaton home">
+        <span class="betaBrandMark" aria-hidden="true">T</span>
+        <span>Talkaton</span>
+        <small>Beta</small>
+      </a>
+      <div class="betaNavActions">
+        <a href="/">Home</a>
+        <a class="betaNavPrimary" href="/chat">Open chat</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="betaHero">
+        <div class="betaGlow" aria-hidden="true"></div>
+        <div class="betaHeroCopy">
+          <div class="betaStatus"><span aria-hidden="true"></span> Trusted access only</div>
+          <p class="betaEyebrow">Private Talkaton program</p>
+          <h1>Be first to use what Talkaton builds next.</h1>
+          <p class="betaLead">
+            A private early-access program for trusted members—with more models, higher limits,
+            power tools, and a direct say in what ships.
+          </p>
+          <div class="betaActions">
+            <a class="betaPrimaryBtn" href="#request">Request trusted access <span aria-hidden="true">→</span></a>
+            <a class="betaSecondaryBtn" href="/chat?beta=1">I’m already approved</a>
+          </div>
+          <p class="betaFinePrint">Not public · Manual trust review · Time-limited · Approval is tied to your account</p>
+        </div>
+
+        <aside class="betaSignalCard" aria-label="Beta status">
+          <div class="betaSignalHeader">
+            <span>Current build</span>
+            <strong id="betaAccessLabel">Checking access</strong>
+          </div>
+          <div class="betaSignal">
+            <span class="betaSignalPulse" aria-hidden="true"></span>
+            <div><strong id="betaAccessTitle">Beta Lab online</strong><small id="betaAccessDetail">Extra models, limits, tools, and answer power for approved accounts</small></div>
+          </div>
+          <dl class="betaStats">
+            <div><dt>Models</dt><dd>8</dd></div>
+            <div><dt>Beta perks</dt><dd>5</dd></div>
+            <div><dt>Review</dt><dd>Manual</dd></div>
+          </dl>
+          <div class="betaAccessPanel">
+            <p id="betaAccessStatus" role="status" aria-live="polite">Checking this browser for a confirmed Talkaton account…</p>
+            <a id="betaAccessAction" class="betaSecondaryBtn" href="/chat?auth=login&amp;beta=1">Log in to check access</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="betaSection" aria-labelledby="beta-testing-title">
+        <p class="betaEyebrow">Member perks</p>
+        <h2 id="beta-testing-title">More power, not just more testing.</h2>
+        <div class="betaFeatureGrid">
+          <article><span>01</span><h3>All 8 models</h3><p>Use every model listed in Talkaton, including GPT, Claude, Gemini, DeepSeek, Llama, and Mistral.</p></article>
+          <article><span>02</span><h3>100 messages a day</h3><p>Approved members get a larger daily chat allowance for longer work sessions.</p></article>
+          <article><span>03</span><h3>More live tools</h3><p>Create up to 25 images and run up to 40 web searches per day.</p></article>
+          <article><span>04</span><h3>Instant model compare</h3><p>Use the Compare model button on an answer to get an independent second answer from another model.</p></article>
+          <article><span>05</span><h3>Power answers</h3><p>Get a recommended action plan, useful copy-ready drafts or templates, and suggested follow-up prompts when they help.</p></article>
+          <article><span>06</span><h3>Request Dev Access</h3><p>Trusted Beta members can request time-limited Dev Access with infinite messages, images, and web searches.</p></article>
+        </div>
+      </section>
+
+      <section class="betaPromise">
+        <div>
+          <p class="betaEyebrow">The beta promise</p>
+          <h2>Experimental does not mean careless.</h2>
+        </div>
+        <ul>
+          <li><strong>Trusted only.</strong> Submitting a request does not guarantee approval.</li>
+          <li><strong>Time-limited.</strong> Owner or Support chooses exactly how long access lasts.</li>
+          <li><strong>Dev Access.</strong> Active Beta members may separately request unlimited usage.</li>
+        </ul>
+      </section>
+
+      <section class="betaCta betaRequestSection" id="request" aria-labelledby="beta-request-title">
+        <p class="betaEyebrow">Request access</p>
+        <h2 id="beta-request-title">Tell us why you should be trusted.</h2>
+        <p>
+          Submit one specific request to the private approval queue.
+          Talkaton’s <strong>Owner account or sole Support account</strong> decides whether to trust the account and how long access lasts.
+        </p>
+        <aside class="betaRequestTiming" role="note">
+          <strong>Requests take time.</strong>
+          <span>
+            Talkaton staff review every request manually, so a response may take a while. If a custom
+            request is approved, it may still take additional time to build or enable.
+          </span>
+        </aside>
+        <form class="betaRequestForm" id="betaRequestForm">
+          <div class="betaRequestGrid">
+            <label>
+              Your name
+              <input id="betaRequestName" name="name" type="text" autocomplete="name" maxlength="80" required>
+            </label>
+            <label>
+              Talkaton account email
+              <input id="betaRequestEmail" name="email" type="email" autocomplete="email" maxlength="160" readonly required>
+            </label>
+            <label>
+              Request type
+              <select id="betaRequestType" name="type" required>
+                <option value="beta_lab">Beta Lab access</option>
+                <option id="devAccessOption" value="dev_access" hidden disabled>Dev Access — unlimited usage</option>
+                <option value="existing_model">Access to a model already in Talkaton</option>
+                <option value="new_model">Request a model that is not in Talkaton</option>
+                <option value="new_mode">Request a new response mode</option>
+                <option value="existing_tool">Access to an existing tool</option>
+                <option value="new_tool">Request a new tool or integration</option>
+                <option value="custom">Request another custom feature</option>
+              </select>
+            </label>
+            <label class="betaRequestReason">
+              <span id="betaRequestTargetLabel">What should support approve?</span>
+              <input id="betaRequestTitle" name="title" type="text" minlength="3" maxlength="88" list="betaRequestSuggestions" required placeholder="Example: Access to Beta Lab">
+              <small id="betaRequestTargetHint">Name the exact access or feature you want.</small>
+            </label>
+            <datalist id="betaRequestSuggestions"></datalist>
+            <label class="betaRequestReason">
+              Details and use case
+              <textarea id="betaRequestReason" name="reason" rows="5" minlength="10" maxlength="2000" required placeholder="Explain exactly what you want, why you need it, and how you plan to use it."></textarea>
+            </label>
+          </div>
+          <div class="betaActions">
+            <button class="betaPrimaryBtn" id="betaRequestSubmit" type="submit">Submit request <span aria-hidden="true">→</span></button>
+            <a class="betaSecondaryBtn" href="/chat?auth=login">Log in to Talkaton</a>
+          </div>
+          <p class="betaRequestStatus" id="betaRequestStatus" role="status" aria-live="polite">
+            A confirmed Talkaton account is required. Your account email is attached automatically.
+          </p>
+        </form>
+      </section>
+
+      <section class="betaSection betaMyRequests" aria-labelledby="my-beta-requests-title">
+        <p class="betaEyebrow">Your request history</p>
+        <h2 id="my-beta-requests-title">See what support approved.</h2>
+        <div class="betaRequestHistory" id="betaRequestHistory">
+          <p class="betaRequestEmpty">Log in to view your submitted requests and approval notes.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="betaFooter">
+      <span>© 2026 Talkaton</span>
+      <div><a href="/about">About</a><a href="/chat">Chat</a><a href="/beta/admin">Approval inbox</a><a href="mailto:supportaton@gmail.com">Email</a></div>
+    </footer>
+  </div>
+  <script type="module" src="/beta/app.js?v=20260728-duration-seconds18"></script>
+</body>
+</html>

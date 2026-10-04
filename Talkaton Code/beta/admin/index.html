@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Talkaton Approval Inbox</title>
+  <link rel="icon" href="/favicon-t-20260728.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="/favicon-t-20260728.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css?v=20260728-reviewed-archive21">
+</head>
+<body>
+  <div class="betaAdminPage">
+    <nav class="betaNav" aria-label="Approval navigation">
+      <a class="betaBrand" href="/beta">
+        <span class="betaBrandMark" aria-hidden="true">T</span>
+        <span>Talkaton</span>
+        <small>Approvals</small>
+      </a>
+      <div class="betaNavActions">
+        <a href="/beta">Beta page</a>
+        <a class="betaNavPrimary" href="/chat">Open chat</a>
+      </div>
+    </nav>
+
+    <main class="betaAdminMain">
+      <header class="betaAdminHero">
+        <div>
+          <p class="betaEyebrow">Private approval queue</p>
+          <h1>Custom request inbox</h1>
+          <p>Review pending requests. Approved or declined items disappear from this inbox immediately.</p>
+        </div>
+        <button class="betaSecondaryBtn" id="adminRefreshBtn" type="button">Refresh list</button>
+      </header>
+
+      <section class="betaAdminGate" id="adminGate" aria-live="polite">
+        <strong>Checking support access…</strong>
+        <p>
+          supportaton@gmail.com is the only Support account.
+          kantertal1@gmail.com can also enter through its separate Owner permissions.
+        </p>
+        <a class="betaPrimaryBtn" href="/chat?auth=login">Log in to Talkaton</a>
+      </section>
+
+      <section class="betaAdminDashboard" id="adminDashboard" hidden>
+        <div class="betaAdminStats pendingOnly" aria-label="Pending request total">
+          <article><span>Pending</span><strong id="adminPendingCount">0</strong></article>
+        </div>
+
+        <div class="betaAdminToolbar">
+          <label>
+            Search requests
+            <input id="adminSearchInput" type="search" placeholder="Email, title, details, or request type">
+          </label>
+        </div>
+
+        <p class="betaAdminStatus" id="adminStatus" role="status" aria-live="polite"></p>
+        <div class="betaAdminRequestList" id="adminRequestList"></div>
+
+        <details class="betaReviewedArchive" id="adminReviewedArchive">
+          <summary>
+            <span>Approved or declined</span>
+            <span class="betaReviewedCount" id="adminReviewedCount">0</span>
+          </summary>
+          <div class="betaReviewedList" id="adminReviewedList"></div>
+        </details>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/beta/admin/app.js?v=20260728-reviewed-archive21"></script>
+</body>
+</html>

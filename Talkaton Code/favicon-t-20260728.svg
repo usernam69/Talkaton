@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .talkaton-letter { fill: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .talkaton-letter { fill: #111111; }
+    }
+  </style>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#f43f46"/>
+  <path class="talkaton-letter" d="M19 18h26v7H35.5v22h-7V25H19z"/>
+</svg>
