@@ -18,7 +18,7 @@ const CONFIG = {
   INITIAL_CHAT_BATCH: 30,
   CHAT_BATCH_SIZE: 25,
   ACCOUNT_ROLES: {
-    "kantertal1@gmail.com": {
+    "sdgoldstein14@gmail.com": {
       tier: "owner",
       label: "Owner",
       description: "Full owner access · unlimited"
@@ -30,21 +30,21 @@ const CONFIG = {
     }
   },
   DAILY_LIMITS: {
-    guest: 25,
-    free: 45
+    guest: 2500,
+    free: 4500
   },
   BETA_DAILY_LIMITS: {
-    messages: 100,
-    images: 25,
-    searches: 40
+    messages: 100000,
+    images: 2500,
+    searches: 4000
   },
   IMAGE_DAILY_LIMITS: {
-    guest: 5,
-    free: 10
+    guest: 500,
+    free: 1000
   },
   SEARCH_DAILY_LIMITS: {
-    guest: 5,
-    free: 15
+    guest: 500,
+    free: 1500
   }
 };
 
@@ -70,7 +70,7 @@ const MODEL_ALIASES = {
   "google/gemini-pro": "google/gemini-2.5-flash-lite"
 };
 
-const RESPONSE_MODES = new Set(["Normal", "Chaos", "Safe Mode", "Coder Mode", "Creative", "Beta Lab"]);
+const RESPONSE_MODES = new Set(["Normal", "Chaos", "Safe Mode", "Coder Mode", "Creative", "Beta Lab, Gay Mode"]);
 
 const defaultState = {
   user: null,
